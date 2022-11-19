@@ -1,3 +1,4 @@
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using survey_app.Data;
@@ -53,7 +54,7 @@ public class QuestionController : Controller
     [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
-        var exist = await _context.Questions.Where(x => x.Id == id).FirstOrDefaultAsync();
+        var exist = await _context.Questions.Include(x => x.Choices).Where(x => x.Id == id).FirstOrDefaultAsync();
         return View(exist);
     }
 
@@ -88,7 +89,7 @@ public class QuestionController : Controller
     [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
-        var exist = await _context.Questions.Where(x => x.Id == id).FirstOrDefaultAsync();
+        var exist = await _context.Questions.Include(x => x.Choices).Where(x => x.Id == id).FirstOrDefaultAsync();
         return View(exist);
     }
 
