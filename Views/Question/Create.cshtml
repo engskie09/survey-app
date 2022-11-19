@@ -1,0 +1,25 @@
+@model survey_app.Models.Question
+
+<form asp-action="Create" asp-area="Question" method="post">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="form-group">
+                <label>Question:</label>
+                <input asp-for="Description" name="Description" type="text" required class="form-control" placeholder="Enter Description" tabindex="1">
+            </div>
+            <!--div class="form-group">
+                <label>Choices:</label>
+                <input asp-for="Description" name="Description" type="text" required class="form-control" tabindex="1">
+            </div -->
+            <div class="form-group">
+                <div asp-validation-summary="All" class="text-danger"></div>
+            </div>
+            <div class="card-footer">
+                <center>
+                    <button type="submit" class="btn btn-primary">Create Question</button>
+                    <a asp-action="Index" asp-controller="Question" class="btn btn-secondary">Cancel</a>
+                </center>
+            </div>
+        </div>
+    </div>
+</form>
