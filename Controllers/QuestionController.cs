@@ -84,4 +84,39 @@ public class QuestionController : Controller
         ModelState.AddModelError(string.Empty, $"something went wrong invalid model");
         return View(question);
     }
+
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var exist = await _context.Questions.Where(x => x.Id == id).FirstOrDefaultAsync();
+        return View(exist);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Delete(Question question)
+    {
+        if (ModelState.IsValid)
+        {
+            try
+            {
+                var exist = await _context.Questions.Where(x => x.Id == question.Id).FirstOrDefaultAsync();
+
+                if (exist != null)
+                {
+                    _context.Remove(exist);
+                }
+
+                await _context.SaveChangesAsync();
+                return RedirectToAction("Index");
+            }
+            
+            catch (Exception exception)
+            {
+                 ModelState.AddModelError(string.Empty, $"something went wrong {exception.Message}");
+            }
+        }
+
+        ModelState.AddModelError(string.Empty, $"something went wrong invalid model");
+        return View(question);
+    }
 }
