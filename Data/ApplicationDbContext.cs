@@ -6,6 +6,7 @@ namespace survey_app.Data;
 public class ApplicationDbContext: DbContext
 {
     public virtual DbSet<Question> Questions {get; set;}
+    public virtual DbSet<Question> Choices {get; set;}
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options){ }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
