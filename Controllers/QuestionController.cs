@@ -6,7 +6,7 @@ using survey_app.Models;
 
 namespace survey_app.Controllers;
 
-
+[Route("admin")]
 public class QuestionController : Controller
 {
     private ApplicationDbContext _context;
@@ -16,6 +16,7 @@ public class QuestionController : Controller
         _context = context;
     }
 
+    [HttpGet("list")]
     public async Task<IActionResult> Index()
     {
         var questions = await _context.Questions.ToListAsync();
@@ -23,13 +24,13 @@ public class QuestionController : Controller
         return View(questions);
     }
 
-    [HttpGet]
+    [HttpGet("create")]
     public IActionResult Create()
     {
         return View();
     }
 
-    [HttpPost]
+    [HttpPost("create")]
     public async Task<IActionResult> Create(Question question)
     {
         if (ModelState.IsValid)
@@ -51,14 +52,14 @@ public class QuestionController : Controller
         return View(question);
     }
 
-    [HttpGet]
+    [HttpGet("edit/{id?}")]
     public async Task<IActionResult> Edit(int id)
     {
         var exist = await _context.Questions.Include(x => x.Choices).Where(x => x.Id == id).FirstOrDefaultAsync();
         return View(exist);
     }
 
-    [HttpPost]
+    [HttpPost("edit/{id?}")]
     public async Task<IActionResult> Edit(Question question)
     {
         if (ModelState.IsValid)
@@ -87,14 +88,14 @@ public class QuestionController : Controller
         return View(question);
     }
 
-    [HttpGet]
+    [HttpGet("delete/{id?}")]
     public async Task<IActionResult> Delete(int id)
     {
         var exist = await _context.Questions.Include(x => x.Choices).Where(x => x.Id == id).FirstOrDefaultAsync();
         return View(exist);
     }
 
-    [HttpPost]
+    [HttpPost("delete/{id?}")]
     public async Task<IActionResult> Delete(Question question)
     {
         if (ModelState.IsValid)
