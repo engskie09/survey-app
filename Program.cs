@@ -28,8 +28,12 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+// app.MapControllerRoute(
+//     name: "admin",
+//     pattern: "{controller=Question}/{action=Index}/{id?}");
+
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Question}/{action=Index}/{id?}");
+    pattern: "{controller=Survey}/{action=Index}/{id?}");
 
 app.Run();
