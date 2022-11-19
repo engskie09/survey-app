@@ -11,5 +11,4 @@ then
 
 ""Database related Commands""
 - dotnet ef migrations add "Initial Migrations"
-- dotnet ef migrations add "add table questions table"
 - dotnet ef database update
