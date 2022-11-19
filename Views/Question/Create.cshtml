@@ -7,10 +7,26 @@
                 <label>Question:</label>
                 <input asp-for="Description" name="Description" type="text" required class="form-control" placeholder="Enter Description" tabindex="1">
             </div>
-            <!--div class="form-group">
-                <label>Choices:</label>
-                <input asp-for="Description" name="Description" type="text" required class="form-control" tabindex="1">
-            </div -->
+            <br>
+            <div class="form-group">
+                <label>A:</label>
+                <input asp-for="Choices[0].Description" type="text" required class="form-control" placeholder="Description" tabindex="2">
+            </div>
+
+            <div class="form-group">
+                <label>B:</label>
+                <input asp-for="Choices[1].Description" type="text" required class="form-control" placeholder="Description" tabindex="3">
+            </div>
+
+            <div class="form-group">
+                <label>C:</label>
+                <input asp-for="Choices[2].Description" type="text" required class="form-control" placeholder="Description" tabindex="4">
+            </div>
+
+            <div class="form-group">
+                <label>D:</label>
+                <input asp-for="Choices[3].Description" type="text" required class="form-control" placeholder="Description" tabindex="5">
+            </div>
             <div class="form-group">
                 <div asp-validation-summary="All" class="text-danger"></div>
             </div>
