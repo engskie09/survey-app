@@ -65,11 +65,12 @@ public class QuestionController : Controller
         {
             try
             {
-                var exist = await _context.Questions.Where(x => x.Id == question.Id).FirstOrDefaultAsync();
+                var exist = await _context.Questions.Include(x => x.Choices).Where(x => x.Id == question.Id).FirstOrDefaultAsync();
 
                 if (exist != null)
                 {
                     exist.Description = question.Description;
+                    exist.Choices = question.Choices;
                 }
 
                 await _context.SaveChangesAsync();
